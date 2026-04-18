@@ -448,7 +448,7 @@ Dev: `pytest`, `vcrpy`, `ruff`
 Post-install: `playwright install chromium` (Docker base image has this pre-installed; local dev must run it).
 
 ### Node (`frontend/package.json`)
-`react`, `react-dom`, `typescript`, `@types/react`, `@types/react-dom`, `vite`, `@vitejs/plugin-react`, `tailwindcss`, `postcss`, `autoprefixer`, `zustand`, `immer`, `@dnd-kit/core`, `@dnd-kit/sortable`, `react-colorful`, `lucide-react`, `idb`
+`react`, `react-dom`, `typescript`, `@types/react`, `@types/react-dom`, `vite`, `@vitejs/plugin-react`, `tailwindcss`, `postcss`, `autoprefixer`, `zustand`, `immer`, `zod`, `@dnd-kit/core`, `@dnd-kit/sortable`, `react-colorful`, `lucide-react`, `idb`
 
 Dev: `vitest`, `@playwright/test`, `eslint`, `prettier`
 
