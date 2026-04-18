@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
 
-const BACKEND_URL = "http://localhost:8787";
+const BACKEND_URL = process.env.VITE_BACKEND_URL || "http://localhost:8787";
 
 const PROXIED_PATHS = [
   "/api",

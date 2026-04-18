@@ -1,43 +1,83 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   html,
   body,
   #root {
     height: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   html {
-    font-family: theme("fontFamily.sans");
+    font-family: theme("fontFamily.ui");
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
   body {
-    @apply bg-canvas text-text-primary;
+    background: theme("colors.bg.0");
+    color: theme("colors.text.0");
+    font-size: 13px;
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    overflow: hidden;
   }
 
-  html.dark body {
-    @apply bg-canvas-dark text-text-primaryDark;
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
   }
 
-  /* Focus ring — DESIGN_SPEC §24 accessibility */
+  input,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::selection {
+    background: theme("colors.accent.soft");
+    color: theme("colors.text.0");
+  }
+
+  /* Scrollbars */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: theme("colors.line.2");
+    border-radius: 10px;
+    border: 2px solid theme("colors.bg.1");
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3d46;
+  }
+
   :focus-visible {
-    outline: 2px solid theme("colors.brand.primary");
+    outline: 2px solid theme("colors.accent.DEFAULT");
     outline-offset: 2px;
     border-radius: 2px;
   }
 
-  html.dark :focus-visible {
-    outline-color: theme("colors.brand.primaryDark");
-  }
-
-  /* Respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -51,8 +91,18 @@
 }
 
 @layer components {
-  /* Skip link (DESIGN_SPEC §24) */
+  .mono {
+    font-family: theme("fontFamily.mono");
+    font-feature-settings: "zero", "ss01";
+  }
+
   .skip-link {
-    @apply absolute left-4 -top-10 z-50 rounded-md bg-brand-primary px-3 py-2 text-white focus:top-4;
+    @apply absolute left-4 -top-10 z-50 rounded-m bg-accent px-3 py-2 text-bg-0 font-semibold focus:top-4;
+  }
+}
+
+@keyframes hero-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

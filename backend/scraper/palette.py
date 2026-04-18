@@ -56,9 +56,16 @@ def _extract_swatches(image_bytes: bytes) -> list[_Swatch]:
     """Run Pylette on the bytes and convert each color into a `_Swatch`."""
     from Pylette import extract_colors  # local import keeps top-level cheap
 
-    tmp_path = Path(tempfile.mkstemp(prefix="palette_", suffix=".png")[1])
+    # NamedTemporaryFile closes the handle on context exit so Pylette can
+    # reopen the file on Windows (mkstemp leaks the fd and WinError 32
+    # otherwise — the file is still locked when Pylette tries to read).
+    with tempfile.NamedTemporaryFile(
+        prefix="palette_", suffix=".png", delete=False
+    ) as handle:
+        handle.write(image_bytes)
+        tmp_path = Path(handle.name)
+
     try:
-        tmp_path.write_bytes(image_bytes)
         palette = extract_colors(image=str(tmp_path), palette_size=_PALETTE_SIZE)
     finally:
         tmp_path.unlink(missing_ok=True)

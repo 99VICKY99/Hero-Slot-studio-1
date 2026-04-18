@@ -156,8 +156,11 @@ export type Element =
   | ImageStripElement
   | DividerElement;
 
-// Lazy recursive schema (zod needs z.lazy for self-referential unions)
-export const elementSchema: z.ZodType<Element> = z.lazy(() =>
+// Lazy recursive schema (zod needs z.lazy for self-referential unions).
+// Input type is `unknown` because zod's `.default([])` makes `children`
+// optional on input but required on output — the Element type here only
+// describes output, so we widen input to satisfy the generic.
+export const elementSchema: z.ZodType<Element, z.ZodTypeDef, unknown> = z.lazy(() =>
   z.discriminatedUnion("type", [
     z.object({ ...baseFields, type: z.literal("Container"), props: containerPropsSchema, children: z.array(elementSchema).default([]) }),
     z.object({ ...baseFields, type: z.literal("Heading"), props: headingPropsSchema, children: z.array(elementSchema).default([]) }),

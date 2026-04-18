@@ -1,5 +1,7 @@
 # Screen Design Specification — Hero Slot Studio
 
+> **Note:** Tokens updated 2026-04-18 from hero-handoff bundle. Old LinkedIn-blue palette retired.
+>
 > Companion to `PRD.md` and `ARCHITECTURE.md`. The PRD defines what we build. The architecture defines how it's wired. **This document defines what every screen looks like.**
 >
 > **This is a written specification, not a visual mockup.** Take this document into Figma (or your design tool of choice) and build screen-by-screen against the specs below. Every measurement, color token, and interaction is defined explicitly so two designers building from this would produce visually consistent results.
@@ -39,109 +41,105 @@
 ## 1. Design Foundations
 
 > **These tokens are LOCKED. Every screen below references these and only these.**
+>
+> Dark mode is the only mode. Sourced from `hero-handoff/hero/project/Hero Slot Studio.html` on 2026-04-18. Mirrored into `frontend/tailwind.config.ts` and `frontend/src/index.css`.
 
 ### 1.1 Color tokens
 
-| Token name | Value | Usage |
+**Backgrounds**
+
+| Token | Value | Usage |
 |---|---|---|
-| `color.brand.primary` | `#0A66C2` | All primary actions, active states, links, brand accents |
-| `color.brand.primaryHover` | `#004182` | Hover on primary elements; active/pressed states |
-| `color.background.canvas` | `#F3F6F8` | App background (the "outside the cards" color) |
-| `color.surface.default` | `#FFFFFF` | Cards, panels, modals, dropdowns |
-| `color.surface.subtle` | `#F9FAFB` | Hover state on list rows, subtle section dividers |
-| `color.border.default` | `#E5E7EB` | All card borders, divider lines, subtle separations |
-| `color.border.strong` | `#D1D5DB` | Input borders, emphasized boundaries |
-| `color.text.primary` | `#111827` | Headings, body text, primary content |
-| `color.text.secondary` | `#6B7280` | Captions, metadata, helper text, muted content |
-| `color.text.disabled` | `#9CA3AF` | Disabled states |
-| `color.feedback.success` | `#057642` | Success toasts, confirmation icons, "saved" indicators |
-| `color.feedback.warning` | `#B45309` | Warning toasts, caution states, fork notifications |
-| `color.feedback.error` | `#B91C1C` | Error toasts, validation failures, destructive actions |
-| `color.feedback.info` | `#0A66C2` | Informational toasts (uses brand blue) |
+| `bg.0` | `#0a0b0d` | App background |
+| `bg.1` | `#101114` | Panels (topbar, left panel, right sidebar, timeline) |
+| `bg.2` | `#17181c` | Raised surfaces (chips, toolbar, segmented control bg) |
+| `bg.3` | `#1e2026` | Hover, pill backgrounds |
+| `bg.4` | `#252830` | Selected segmented-control segment |
+| `canvas` | `#0d0e11` | Canvas area behind the preview frame |
+
+**Lines**
+
+| Token | Value | Usage |
+|---|---|---|
+| `line.1` | `#1f2128` | Default dividers, borders on inputs/cards |
+| `line.2` | `#2a2d36` | Stronger dividers, borders on floating surfaces |
+
+**Text**
+
+| Token | Value | Usage |
+|---|---|---|
+| `text.0` | `#f5f6f8` | Primary copy |
+| `text.1` | `#a8acb8` | Secondary copy |
+| `text.2` | `#6b6f7c` | Tertiary / muted labels |
+| `text.3` | `#474a55` | Quaternary / decorative |
+
+**Accent (violet)**
+
+| Token | Value | Usage |
+|---|---|---|
+| `accent` | `#8b7dff` | Selection rings, primary buttons, CTA gradient base |
+| `accent.soft` | `#8b7dff26` | Row highlights, mention pills |
+| `accent.line` | `#8b7dff4d` | Focused input borders, soft outlines |
+
+**Feedback**
+
+| Token | Value | Usage |
+|---|---|---|
+| `pos` | `#4ade80` | Success dots, insert-child timeline dots |
+| `warn` | `#fbbf24` | Warning indicator, generate/regenerate ops |
+| `neg` | `#f87171` | Destructive actions, remove-child timeline dots |
 
 ### 1.2 Typography tokens
 
-**Font family:** `Inter` (load weights 400, 500, 600, 700)
-**Fallback stack:** `Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif`
+**Font families**
 
-| Token | Size | Line height | Weight | Usage |
-|---|---|---|---|---|
-| `text.pageTitle` | 32px | 40px | 700 | Top of major screens (Welcome, Settings) |
-| `text.sectionHeader` | 24px | 32px | 600 | Section dividers, modal titles |
-| `text.subsectionHeader` | 20px | 28px | 600 | Smaller section breaks |
-| `text.cardTitle` | 18px | 24px | 600 | Variant cards, version history items |
-| `text.cardSubtitle` | 16px | 24px | 500 | Subordinate card content |
-| `text.body` | 14px | 22px | 400 | Default body text everywhere |
-| `text.bodyEmphasis` | 14px | 22px | 500 | Inline emphasis, labels |
-| `text.bodyStrong` | 14px | 22px | 600 | Inline strong emphasis |
-| `text.button` | 14px | 20px | 600 | All button labels |
-| `text.input` | 14px | 20px | 400 | Input field text |
-| `text.label` | 13px | 18px | 500 | Input labels, form field names |
-| `text.caption` | 12px | 16px | 400 | Metadata, timestamps, hints |
-| `text.captionEmphasis` | 12px | 16px | 600 | Small emphasis (badge text) |
-| `text.code` | 13px | 20px | 400 | Mono — `JetBrains Mono` or `ui-monospace` fallback |
-
-### 1.3 Spacing tokens (4px grid)
-
-| Token | Value | Use |
+| Token | Stack | Usage |
 |---|---|---|
-| `space.0` | 0 | — |
-| `space.1` | 4px | Icon-to-text gap, micro spacing |
-| `space.2` | 8px | Button internal padding (vertical), tight gaps |
-| `space.3` | 12px | Compact content padding |
-| `space.4` | 16px | Default component padding |
-| `space.5` | 20px | — |
-| `space.6` | 24px | Card internal padding, section gaps |
-| `space.8` | 32px | Major section spacing |
-| `space.10` | 40px | — |
-| `space.12` | 48px | Page-level spacing |
-| `space.16` | 64px | Top-of-page breathing room |
+| `font.ui` | `"Inter Tight", -apple-system, system-ui, sans-serif` | All UI copy |
+| `font.mono` | `"JetBrains Mono", ui-monospace, monospace` | IDs, numeric inputs, keycaps |
+| `font.display` | `"Instrument Serif", Georgia, serif` | Model-rationale quotes |
 
-### 1.4 Radius tokens
+Weights to load: Inter Tight 400/500/600/700; JetBrains Mono 400/500/600; Instrument Serif 400.
 
-| Token | Value | Use |
+**Base body:** 13px / 1.45 line-height / -0.005em tracking / `text.0` on `bg.0`.
+
+Type scale is prose-sized inline (10px labels, 11.5px chrome, 13px body, up to 54–72px display inside the hero preview itself). No formal `text.pageTitle` scale — every size is declared at the callsite.
+
+### 1.3 Radius tokens
+
+| Token | Value | Usage |
 |---|---|---|
-| `radius.none` | 0 | Full-bleed elements |
-| `radius.sm` | 4px | Tags, badges, small chips |
-| `radius.md` | 6px | Inputs, dropdowns |
-| `radius.lg` | 8px | Cards, modals, panels (the dominant radius) |
-| `radius.xl` | 12px | Hero/feature cards |
-| `radius.pill` | 999px | All buttons (LinkedIn pill style) |
-| `radius.circle` | 50% | Avatars, icon buttons (circular) |
+| `radius.s` | 4px | Swatches, chips, keycaps, small pills |
+| `radius.m` | 6px | Buttons, inputs, segmented controls |
+| `radius.l` | 10px | Floating toolbars, variation cards, tweaks popover |
 
-### 1.5 Shadow tokens
+### 1.4 Shadow tokens
 
-> Shadows are minimal. Cards are **flat** by default. Use shadow only for floating elements that need to lift off the canvas.
-
-| Token | Value | Use |
+| Token | Value | Usage |
 |---|---|---|
-| `shadow.none` | `none` | Default cards |
-| `shadow.subtle` | `0 1px 2px rgba(17, 24, 39, 0.04)` | Hover state on clickable cards |
-| `shadow.dropdown` | `0 4px 12px rgba(17, 24, 39, 0.08)` | Dropdowns, popovers, autocomplete |
-| `shadow.modal` | `0 16px 32px rgba(17, 24, 39, 0.12)` | Modals, dialogs |
-| `shadow.tooltip` | `0 2px 8px rgba(17, 24, 39, 0.12)` | Tooltips |
+| `shadow.pop` | `0 0 0 1px rgba(255,255,255,.04), 0 12px 32px -8px rgba(0,0,0,.6), 0 0 0 1px rgba(0,0,0,.4)` | Popovers (mention menu, tooltips) |
+| `shadow.toolbar` | `0 0 0 1px rgba(255,255,255,.06), 0 18px 48px -12px rgba(0,0,0,.7)` | Floating toolbar, tweaks panel |
 
-### 1.6 Motion tokens
+### 1.5 Motion tokens
 
 | Token | Duration | Easing | Use |
 |---|---|---|---|
-| `motion.fast` | 100ms | `ease-out` | Hover state changes (color, border) |
-| `motion.normal` | 150ms | `ease-out` | Most UI transitions, focus rings |
-| `motion.slow` | 250ms | `ease-out` | Modal/sidebar slide-in |
-| `motion.crawl` | 400ms | `ease-in-out` | Timeline scrub, hero re-render fade |
+| `motion.fast` | 120ms | `ease-out` | Hover color/background, chevron icons |
+| `motion.normal` | 150ms | `ease-out` | Focus rings, border-color swaps |
+| `motion.slow` | 250ms | `ease-out` | Card focus lift |
 
-> No bounce. No spring. No elastic. All transitions are linear or ease-out only.
+### 1.6 Iconography
 
-### 1.7 Iconography
+- **Source:** inline SVGs in `frontend/src/components/studio/Icons.tsx` (mirrored from `hero-handoff/src/icons.jsx`). Uses `lucide-react` for any icons that map 1:1 when needed.
+- **Stroke width:** 1.5px
+- **Default size:** 14px (inline / tree glyph), 16–20px (toolbar, chrome), 24–28px (icon buttons)
+- **Default color:** `text.1`
+- **Hover color:** `text.0` on `bg.2`
+- **Active color:** `text.0` on `bg.3`
 
-- **Library:** Lucide React (already in the architecture stack)
-- **Stroke width:** 1.75px (the slightly heavier variant — reads better at small sizes)
-- **Default size:** 16px (inline), 20px (buttons), 24px (toolbar/header)
-- **Default color:** `color.text.secondary` (#6B7280)
-- **Hover color:** `color.brand.primary` (#0A66C2)
-- **Active/selected color:** `color.brand.primary`
-- **Disabled color:** `color.text.disabled` (#9CA3AF)
-- **No filled icons** (outline-only, per the brief)
+### 1.7 Scrollbars
+
+Webkit scrollbars are themed: 10px track (transparent), thumb `line.2` with a 2px `bg.1` border, hover `#3a3d46`.
 
 ---
 

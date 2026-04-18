@@ -72,11 +72,20 @@ def configure_logfire() -> None:
 
 
 def _attach_request_id_filter() -> None:
-    """Attach the request-id filter to the root logger once."""
-    root = logging.getLogger()
-    if any(isinstance(existing, _RequestIdFilter) for existing in root.filters):
-        return
-    root.addFilter(_RequestIdFilter())
+    """Attach the request-id filter to every root handler.
+
+    Logger-level filters are not applied to records that propagate from
+    descendant loggers (Python stdlib behaviour). Handler-level filters
+    always run, so attach there to guarantee `request_id` is populated
+    before the formatter renders it.
+    """
+    filter_instance = _RequestIdFilter()
+    for handler in logging.getLogger().handlers:
+        already_attached = any(
+            isinstance(existing, _RequestIdFilter) for existing in handler.filters
+        )
+        if not already_attached:
+            handler.addFilter(filter_instance)
 
 
 class RequestIdMiddleware(BaseHTTPMiddleware):

@@ -24,14 +24,19 @@ vi.mock("@/persistence/db", () => {
 
 describe("App", () => {
   beforeEach(() => {
-    vi.stubGlobal("fetch", vi.fn());
+    // /health returns before cleanup finishes — stub global fetch to a pending
+    // promise so we never hit the real network in tests.
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => new Promise(() => {})),
+    );
   });
 
-  it("renders the Hero Slot Studio shell with the fetch-site empty state", () => {
+  it("renders the Hero Slot Studio shell with the studio chrome", () => {
     render(<App />);
-    expect(screen.getByText(/Hero Slot Studio/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /fetch a site to begin/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /fetch site/i })).toBeInTheDocument();
-    expect(screen.getByLabelText(/website url/i)).toBeInTheDocument();
+    expect(screen.getByText(/Hero Slot/i)).toBeInTheDocument();
+    expect(screen.getByText(/Studio/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Publish/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/Hero name/i)).toBeInTheDocument();
   });
 });

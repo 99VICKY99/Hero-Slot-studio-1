@@ -18,6 +18,7 @@ from fastapi.staticfiles import StaticFiles
 
 from backend.config import settings
 from backend.observability.logfire_setup import (
+    _attach_request_id_filter,  # noqa: PLC2701 — internal hook, called early
     install_request_id_middleware,
     logfire_lifespan,
 )
@@ -30,11 +31,13 @@ _FRONTEND_DIST_DIR = Path(__file__).resolve().parent.parent / "frontend" / "dist
 
 
 def _configure_logging() -> None:
-    """Minimal logging config. Logfire lifespan attaches the request-id filter."""
+    """Minimal logging config. Attach request-id filter to handlers up-front so
+    any log emitted before the lifespan starts still has the `request_id` field."""
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(name)s request=%(request_id)s %(message)s",
     )
+    _attach_request_id_filter()
 
 
 def _install_error_handlers(app: FastAPI) -> None:

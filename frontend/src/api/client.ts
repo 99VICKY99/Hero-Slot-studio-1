@@ -73,13 +73,37 @@ export interface FetchSiteRequest {
   url: string;
 }
 
+export interface Palette {
+  primary: string;
+  secondary: string;
+  accent: string;
+  background: string;
+  text: string;
+}
+
+export interface LogoAsset {
+  url: string;
+  data_base64: string;
+}
+
+export interface RankedImage {
+  url: string;
+  width: number;
+  height: number;
+  score: number;
+}
+
+export interface SiteMeta {
+  title?: string | null;
+  description?: string | null;
+}
+
 export interface FetchSiteResponse {
-  palette: string[];
+  palette: Palette;
   fonts: string[];
-  logo: string | null;
-  images: string[];
-  title?: string;
-  description?: string;
+  logo: LogoAsset | null;
+  images: RankedImage[];
+  meta: SiteMeta;
 }
 
 /**
