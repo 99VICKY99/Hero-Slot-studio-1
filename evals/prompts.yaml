@@ -1,0 +1,186 @@
+# Hero Slot Studio eval set
+# Week 0 deliverable: 20 real prompts collected from the production team.
+# See docs/EVAL_SET.md for the format and acceptance DSL.
+#
+# Status: STUB. All 20 rows are _TBD_ until Week 0 collection is complete.
+# Do not renumber IDs once code starts referencing them.
+
+- id: EVAL-001
+  url: _TBD_
+  category: baseline
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-002
+  url: _TBD_
+  category: baseline
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-003
+  url: _TBD_
+  category: baseline
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-004
+  url: _TBD_
+  category: baseline
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-005
+  url: _TBD_
+  category: baseline
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-006
+  url: _TBD_
+  category: baseline
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-007
+  url: _TBD_
+  category: typical
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-008
+  url: _TBD_
+  category: typical
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-009
+  url: _TBD_
+  category: typical
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-010
+  url: _TBD_
+  category: typical
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-011
+  url: _TBD_
+  category: typical
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-012
+  url: _TBD_
+  category: typical
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-013
+  url: _TBD_
+  category: typical
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-014
+  url: _TBD_
+  category: typical
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-015
+  url: _TBD_
+  category: hard
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-016
+  url: _TBD_
+  category: hard
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-017
+  url: _TBD_
+  category: hard
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-018
+  url: _TBD_
+  category: hard
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-019
+  url: _TBD_
+  category: adversarial
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""
+
+- id: EVAL-020
+  url: _TBD_
+  category: adversarial
+  status: not_collected
+  initial_prompt: _TBD_
+  follow_ups: []
+  acceptance: []
+  notes: ""

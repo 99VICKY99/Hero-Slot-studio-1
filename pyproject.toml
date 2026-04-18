@@ -1,0 +1,55 @@
+[project]
+name = "hero-slot-studio"
+version = "0.1.0"
+description = "Internal tool for generating branded login-page hero sections from client websites."
+requires-python = ">=3.11"
+readme = "README.md"
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic>=2",
+    "pydantic-settings",
+    "python-multipart",
+    "playwright",
+    "Pylette",
+    "Pillow",
+    "numpy",
+    "imagehash",
+    "trafilatura",
+    "httpx",
+    "tenacity",
+    "beautifulsoup4",
+    "openai",
+    "anthropic",
+    "logfire",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "vcrpy",
+    "ruff",
+    "httpx",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["backend"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM", "RET"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["backend/tests"]
+pythonpath = ["."]
